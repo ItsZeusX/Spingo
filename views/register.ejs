@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/fav.png">
+    <title>Spingo | Register</title>
+    <link rel="stylesheet" href="/css/style.css">
+   
+</head>
+<body>
+    <div id="regContainer">
+        <div id="regInputs">
+            <div class="logo">
+                <img src="img/logo-blue.png" alt="">
+            </div>
+            <form action="">
+                <div class="register">
+                    <label for="name">Name</label><br>
+                    <input type="text" name="name" id="name"><br>
+                    <label for="lastname">Last Name</label><br>
+                    <input type="text" name="lastname" id="lastname"><br>
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" id="email"><br>
+                    <label for="password">Password</label><br>
+                    <input type="password" name="password" id="password"><br>
+                    <div id="registerButton"><button type="submit">REGISTER</button></div>
+                    
+                    <div id="errors"></div>
+                </div>
+            </form>
+        </div>
+        <div id="regImage">
+           
+        </div>
+    </div>
+    <script>
+        form = document.querySelector("form")
+        form.addEventListener("submit" , async (e) => {
+            e.preventDefault();
+            try {
+                fetch("/register" , {
+                    method : "POST",
+                    body : JSON.stringify({
+                        "name" : form.name.value,
+                        "lastname" : form.lastname.value,
+                        "email" : form.email.value,
+                        "password" : form.password.value
+                    }),
+                    headers  : {"Content-Type" : "application/json"}
+                })
+                .then(result => result.json())
+                .then(json => {
+                    if(json.error) {
+                        document.getElementById("errors").innerText = json.error
+                    }
+                    if(json.status == 200 ){
+                        location.assign("/home")
+                    }
+                })
+            }catch{
+                //pass
+            }
+        })
+    </script>
+</body>
+</html>

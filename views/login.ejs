@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/fav.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.lordicon.com/lusqsztk.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div id="container-log">
+    <div class="container-img">
+        <img src="/img/Login.jpg
+        " alt="background">
+    </div>
+    <div class="container-inputs">
+        <div class="logo">
+            <img src="img/logo-blue.png" alt="">
+        </div>
+    <form action="">
+        <label for="email">Email</label><br>
+        <input type="email" name="email" id="email"><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password"><br>
+        <input type="checkbox" name="remember" id="remember">
+        <label for="remember">Remember me</label><br>
+        <button type="submit" id="log-btn">LOGIN</button>
+        <a href="#" >
+           
+<lord-icon
+    src="https://cdn.lordicon.com/iiueiwdd.json"
+    trigger="morph"
+    style="width:20px;height:20px">
+</lord-icon>
+            Forgot my password</a>
+        
+    </form>
+    <div id="errors" style="color: red;"></div>
+</div>
+
+</div>
+    <script>
+        form = document.querySelector("form")
+        form.addEventListener("submit" , async (e) => {
+            e.preventDefault();
+            try {
+                fetch("/login" , {
+                method : "POST",
+                body : JSON.stringify({
+                    "email" : form.email.value,
+                    "password" : form.password.value
+                }),
+                headers  : {"Content-Type" : "application/json"}
+            })
+            .then(result => result.json())
+            .then(json => {
+                if(json.error) {
+                    document.getElementById("errors").innerText = json.error
+                }
+                if(json.status == 200 ){
+                    location.assign("/home")
+                }
+            })
+            }catch{
+                //pass
+            }
+        })
+    </script>
+</body>
+</html>

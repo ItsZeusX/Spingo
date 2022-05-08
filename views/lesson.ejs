@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/34c1e777c6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.lordicon.com/lusqsztk.js"></script>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/fav.png">
+    <title>Spingo | Lesson</title>
+
+</head>
+<body> <%- include('./partials/header.ejs') %>
+   <div id="lesson_wrapper">
+    <div id="lesson_title"></div>
+    <div id="lesson_img">
+        <img src="" alt="">
+    </div>
+    
+    <h1 id="activities_header">ACTIVITIES</h1>
+    <div id="activities-container">
+           
+    </div>
+   </div>
+
+
+
+    <script src="/js/lesson.js"></script>
+    
+    <script id="transfer">
+        var data = <%- JSON.stringify(lesson) %>;
+        console.log(externalData)
+        externalData = data;
+        document.getElementById("transfer").remove()
+    </script>
+    <script>
+        window.localStorage.setItem("current_lesson" , JSON.stringify({lesson_title : data.info.title,lesson_href :`/lesson/${data.info.externalId}`}))
+    </script>
+</body>
+</html>

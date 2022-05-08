@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/fav.png">
+    <title>Spingo | Video</title>
+    <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+      <div id="video_subbody">
+
+    <div id="video_container">
+        <video controls id="player" src="https://app.ofppt-langues.com<%= video.videoUrl  %>"></video>
+    </div>
+    <button id="next_btn">VALIDATE</button>
+</div>
+    <script type="text/javascript">
+        const controls = [
+            'play-large', 
+            'restart', 
+            'rewind', 
+            'play', 
+            'fast-forward', 
+            'progress', 
+            'current-time', 
+            'duration', 
+            'mute', 
+            'volume', 
+            'pip',
+            'airplay', 
+            'download',
+              'fullscreen' 
+        ];
+
+        const player = Plyr.setup('video', { controls });
+    </script>
+    <script>
+        document.getElementById("next_btn").addEventListener("click" , () => {
+            SetScore()
+            window.location.replace(`/lesson/<%= video.lessonExternalId %>`)
+        })
+        function SetScore (){
+            fetch(`/api/set_score/<%=video.externalId%>` , {
+                method : "POST"
+        })
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spingo | Home</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/fav.png">
+   <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+
+    <%- include('./partials/header.ejs') %>
+      <div id="subbody">
+
+        <div id="main_wrapper"> 
+          <div id="level_selector">
+            <h3>Levels</h3>
+            <ul>
+              <li class="selector">A-</li>
+              <li class="selector">A1</li>
+              <li class="selector">A2</li>
+              <li class="selector">B1</li>
+              <li class="selector">B2</li>
+              <li class="selector">C-</li>
+            </ul>
+          </div>
+        </div>
+        <div id="sidebar">
+          <div id="current_language" class="sidebar_title">
+            My Learning Language
+            <div class="sidebar_subtitle">English</div>
+          </div>
+          <div id="last_lesson" class="sidebar_title">
+            My Current Lesson
+           <div><a  class="sidebar_subtitle" href=""></a></div>
+          </div>
+        </div>
+
+    </div>
+
+
+    <script src="/js/home.js"></script>
+    <script id="transfer">
+      var data = <%- JSON.stringify(missions) %>;
+      externalData = data;
+      document.getElementById("transfer").remove()
+    </script>
+    <script>
+      lastLessonContainer =  document.querySelector("#last_lesson .sidebar_subtitle")
+      values = JSON.parse(window.localStorage.getItem("current_lesson"))
+      lastLessonContainer.innerText = values.lesson_title.replace("Mise en pratique_" , "")
+      lastLessonContainer.href = values.lesson_href
+
+   
+   </script>
+  </body>
+</html>

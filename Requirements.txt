@@ -1,0 +1,3 @@
+To run this app you need to have NodeJS and mySQL installed,
+Then use the sql dumb file in the folder /DATABASES to create the database needed
+Use "npm start"  in the terminal to start the server
